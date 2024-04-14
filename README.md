@@ -21,11 +21,6 @@ The docker server is only needed for testing, if you have a target service runni
 
 1. Edit the telegraf.conf in the client directory so it uses the commands you want it to. The current .conf file is setup for using iperf but you can run any command you want to. It helps if it
    outputs to CSV or JSON format so Influx can handle it more easily. Remember to rebuild your docker image you want to include those changes.
-2. Run the following:
-```
-sudo docker run -it --rm --privileged --name=rr-toolkit-client -p 3000:3000 -p 8086:8086 -p 61208:61208 -v $PWD/logfiles:/logfiles -h CLIENT -e TARGET='172.17.0.1' -e IPERF3_INT='15' -e IPERF2_INT='30' -e SOUND='1' rr-toolkit-client
-```
-Where 3000 is Grafana, 8086 is Influx and 61208 is a Glances service. As the current telegraf file is geared towards running iperf, we also specify some variables that the docker build image can use. And for kicks we enable some sound if available.
 
 ```
 [[inputs.exec]]
@@ -39,7 +34,12 @@ json_query = "end"
 name_override = "iperf3 server"
 ```
 
-3. Run the docker container
+3. Run the following:
+```
+sudo docker run -it --rm --privileged --name=rr-toolkit-client -p 3000:3000 -p 8086:8086 -p 61208:61208 -v $PWD/logfiles:/logfiles -h CLIENT -e TARGET='172.17.0.1' -e IPERF3_INT='15' -e IPERF2_INT='30' -e SOUND='1' rr-toolkit-client
+```
+Where 3000 is Grafana, 8086 is Influx and 61208 is a Glances service. As the current telegraf file is geared towards running iperf, we also specify some variables that the docker build image can use. And for kicks we enable some sound if available.
+
 4. You can use Grafana, but you are free to use any of the backends Telegraf supports and send it straight to your favorite logging platform.
 ```
 
