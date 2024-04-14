@@ -39,7 +39,6 @@ name_override = "iperf3 server"
 sudo docker run -it --rm --privileged --name=rr-toolkit-client -p 3000:3000 -p 8086:8086 -p 61208:61208 -v $PWD/logfiles:/logfiles -h CLIENT -e TARGET='172.17.0.1' -e IPERF3_INT='15' -e IPERF2_INT='30' -e SOUND='1' rr-toolkit-client
 ```
 Where 3000 is Grafana, 8086 is Influx and 61208 is a Glances service. As the current telegraf file is geared towards running iperf, we also specify some variables that the docker build image can use. And for kicks we enable some sound if available. You can use Grafana, but you are free to use any of the backends Telegraf supports and send it straight to your favorite logging platform.
-```
 
 ### Troubleshooting
 
