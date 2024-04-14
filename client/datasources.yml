@@ -1,0 +1,20 @@
+apiVersion: 1
+datasources:
+  - orgId: 1
+    version: 2 
+    name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://localhost:8086
+    basicAuth: true
+    isDefault: true
+    user: admin 
+    uid: ed7e5506-7237-4f4a-9d2b-645f9ee0f33b
+    secureJsonData:
+      token: rJK0zVb2OxDkzhKwMRtIIFsZplmX5iMrnQEr1BLFICobHaCkogyeOId6zhEYo4NJ077E1qiZdmpPfJ517nRi8w== 
+      password: ExAmPl3PA55W0rD 
+    jsonData:
+      version: Flux
+      organization: ORG 
+      defaultBucket: logs 
+      httpMode: POST
